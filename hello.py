@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from flask import make_response
 from flask import abort
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -31,3 +32,7 @@ def myAborA():
 def index():
     user_agent = request.headers.get('User-Agent')
     return '<p> Your browser is {}</p>'.format(user_agent)
+
+@app.route('/user/<name>')
+def user(name):
+    return render_template('user.html', name=name)
